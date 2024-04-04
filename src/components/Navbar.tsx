@@ -25,7 +25,7 @@ const Navbar = ({ url, children }: Props) => {
   return (
     <header>
       <div className="mx-auto flex h-24 max-w-screen-xl bg-light-white px-8 dark:bg-dark-gray">
-        <div className="mr-auto flex flex-1 items-center space-x-2 text-2xl">
+        <div className="mr-auto flex flex-1 items-center space-x-2 text-3xl">
           <span aria-label="rocket" role="img" className="text-lg">
             👨🏻‍🚀
           </span>
@@ -34,7 +34,7 @@ const Navbar = ({ url, children }: Props) => {
           </a>
         </div>
         <nav
-          className={`absolute left-0 top-0 flex h-screen w-full flex-1 flex-col items-center justify-center gap-10 bg-light-white text-lg transition-transform duration-500 dark:bg-dark-gray sm:static sm:h-auto sm:w-auto sm:translate-y-0 sm:flex-row ${isNavOpen ? 'translate-y-0' : '-translate-y-full'}`}
+          className={`absolute left-0 top-0 flex h-screen w-full flex-1 flex-col items-center justify-center gap-10 bg-light-white text-xl transition-transform duration-500 dark:bg-dark-gray sm:static sm:h-auto sm:w-auto sm:translate-y-0 sm:flex-row ${isNavOpen ? 'translate-y-0' : '-translate-y-full'}`}
         >
           {navMenu.map((menu) => {
             const { title, link } = menu;

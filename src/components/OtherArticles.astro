@@ -1,12 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-
 const { articles } = Astro.props;
 ---
 
 <div class="mx-auto mt-32 max-w-screen-xl px-8">
   {
-    articles.map((article, index) => {
+    articles.map((article: any, index: number) => {
       const slug = article.slug;
       const { image, title, tags, pubDate, description } = article.data;
       const formattedDate = new Date(pubDate).toLocaleDateString('en-GB', {

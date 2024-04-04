@@ -5,7 +5,7 @@
     "initial_value": "feat",
     "infer_type_from_branch": true,
     "append_emoji_to_label": true,
-    "append_emoji_to_commit": false,
+    "append_emoji_to_commit": true,
     "options": [
       {
         "value": "feat",
@@ -17,7 +17,7 @@
       {
         "value": "del",
         "label": "del",
-        "hint": "delete feature or module",
+        "hint": "Delete feature or module",
         "emoji": "⛔",
         "trailer": "Changelog: delete"
       },
@@ -50,11 +50,11 @@
         "trailer": "Changelog: performance"
       },
       {
-        "value": "test",
-        "label": "test",
-        "hint": "Adding missing tests or correcting existing tests",
-        "emoji": "🚨",
-        "trailer": "Changelog: test"
+        "value": "style",
+        "label": "style",
+        "hint": "Changes style without side effect",
+        "emoji": "💅",
+        "trailer": "Changelog: style"
       },
       {
         "value": "build",

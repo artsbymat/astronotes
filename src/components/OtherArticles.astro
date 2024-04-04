@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+
+const { articles } = Astro.props;
+---
+
+<div class="mx-auto mt-32 max-w-screen-xl px-8">
+  {
+    articles.map((article, index) => {
+      const slug = article.slug;
+      const { image, title, tags, pubDate, description } = article.data;
+      const formattedDate = new Date(pubDate).toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+      });
+      return (
+        <div class="my-20">
+          <div class="flex flex-col md:flex-row md:items-center">
+            <Image
+              src={
+                image
+                  ? image
+                  : 'https://res.cloudinary.com/dlxiuvlm3/image/upload/v1712034778/Blog/3340828.jpg'
+              }
+              alt={title}
+              width={500}
+              height={500}
+              loading="lazy"
+              alt={title}
+              class="w-full object-cover md:w-[480px] lg:w-[500px]"
+            />
+            <div
+              class={`pt-4 ${index % 2 !== 0 ? 'md:order-first md:pr-4' : 'md:order-last md:pl-4'}`}
+            >
+              <p class="text-2xl font-bold text-light-black dark:text-light-white">
+                <a href={`/posts/${slug}`}>{title}</a>
+              </p>
+              <p class="my-2 text-xl font-bold text-light-secondary dark:text-amber-600">
+                <a href={`/tags/${tags[0]}`}>{tags[0]}</a>
+              </p>
+              <p class="my-2 flex items-center gap-x-2 text-light-black dark:text-light-white">
+                <span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    class="stroke-light-black dark:stroke-light-white"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.84211 2.47368V1M9.84211 2.47368V3.94737M9.84211 2.47368H6.52632M1 6.89474V13.5263C1 13.9172 1.15526 14.292 1.43163 14.5684C1.708 14.8447 2.08284 15 2.47368 15H12.7895C13.1803 15 13.5552 14.8447 13.8315 14.5684C14.1079 14.292 14.2632 13.9172 14.2632 13.5263V6.89474M1 6.89474H14.2632M1 6.89474V3.94737C1 3.55652 1.15526 3.18169 1.43163 2.90532C1.708 2.62895 2.08284 2.47368 2.47368 2.47368H3.94737M14.2632 6.89474V3.94737C14.2632 3.55652 14.1079 3.18169 13.8315 2.90532C13.5552 2.62895 13.1803 2.47368 12.7895 2.47368H12.4211M3.94737 1V3.94737"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                {formattedDate}
+              </p>
+              <p class="text-xl text-light-black dark:text-light-white">{description}</p>
+
+              <p class="mt-4 text-xl text-light-black dark:text-light-white">
+                <a href={`/posts/${slug}`} class="">
+                  <span class="border-b border-light-black dark:border-light-white">Rea</span>d more
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    })
+  }
+</div>

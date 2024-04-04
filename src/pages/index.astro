@@ -1,7 +1,27 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import MostRecentArticle from '@/components/MostRecentArticle.astro';
+import OtherArticles from '@/components/OtherArticles.astro';
+import LinkButton from '@components/LinkButton.astro';
+
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const allBlogArticles: CollectionEntry<'articles'>[] = (await getCollection('articles')).sort(
+  (a: CollectionEntry<'articles'>, b: CollectionEntry<'articles'>) =>
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const mostRecentArticle: CollectionEntry<'articles'> = allBlogArticles[0];
+
+const otherArticles: CollectionEntry<'articles'>[] = allBlogArticles.slice(1);
+console.log(mostRecentArticle);
 ---
 
 <BaseLayout>
-  <h1>Coba</h1>
+  <MostRecentArticle article={mostRecentArticle} />
+  <OtherArticles articles={otherArticles} />
+  <div class="mt-8 flex justify-center">
+    <LinkButton href={'/posts'}>Read all entries</LinkButton>
+  </div>
 </BaseLayout>

@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
+        neo: ['GFS Neohellenic', 'sans-serif'],
         jetbrains: ['JetBrains Mono', 'monospace']
       },
       colors: {

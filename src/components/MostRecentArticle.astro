@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import LinkButton from '@components/LinkButton.astro';
+
+const { article } = Astro.props;
+const slug = article.slug;
+const { image, title, tags, pubDate, description } = article.data;
+
+const formattedDate = new Date(pubDate).toLocaleDateString('en-GB', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric'
+});
+---
+
+<div class="my-8 sm:my-10">
+  <div class="mx-auto flex max-w-screen-xl justify-center">
+    <Image
+      src={image
+        ? image
+        : 'https://res.cloudinary.com/dlxiuvlm3/image/upload/v1712034778/Blog/3340828.jpg'}
+      alt={title}
+      width={500}
+      height={500}
+      loading="lazy"
+      alt={title}
+      class="h-[250px] w-[70%] rounded-2xl object-cover"
+    />
+  </div>
+  <div class="mx-auto mt-8 flex max-w-screen-md flex-col items-center">
+    <p
+      class="w-[70%] text-center text-2xl tracking-wide text-light-black dark:text-light-white sm:text-3xl md:text-4xl"
+    >
+      <a href={`/posts/${slug}`}>{title}</a>
+    </p>
+    <p class="mt-3 text-xl font-bold text-light-secondary dark:text-amber-600">
+      <a href={`/tags/${tags[0]}`}>{tags[0]}</a>
+    </p>
+    <p class="mt-2 flex items-center gap-x-2 text-light-black dark:text-light-white">
+      <span>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          class="stroke-light-black dark:stroke-light-white"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9.84211 2.47368V1M9.84211 2.47368V3.94737M9.84211 2.47368H6.52632M1 6.89474V13.5263C1 13.9172 1.15526 14.292 1.43163 14.5684C1.708 14.8447 2.08284 15 2.47368 15H12.7895C13.1803 15 13.5552 14.8447 13.8315 14.5684C14.1079 14.292 14.2632 13.9172 14.2632 13.5263V6.89474M1 6.89474H14.2632M1 6.89474V3.94737C1 3.55652 1.15526 3.18169 1.43163 2.90532C1.708 2.62895 2.08284 2.47368 2.47368 2.47368H3.94737M14.2632 6.89474V3.94737C14.2632 3.55652 14.1079 3.18169 13.8315 2.90532C13.5552 2.62895 13.1803 2.47368 12.7895 2.47368H12.4211M3.94737 1V3.94737"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </span>
+      {formattedDate}
+    </p>
+    <p class="mt-4 px-4 text-center text-xl text-light-black dark:text-light-white sm:text-2xl">
+      {description}
+    </p>
+    <div class="mt-8">
+      <LinkButton href={`/posts/${slug}`}>Read more</LinkButton>
+    </div>
+  </div>
+</div>

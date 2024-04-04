@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=GFS+Neohellenic:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:ital@0;1&display=swap');
 
 body {
-  @apply bg-light-white font-inter dark:bg-dark-gray;
+  @apply font-neo bg-light-white dark:bg-dark-gray;
 }

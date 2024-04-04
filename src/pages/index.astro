@@ -15,7 +15,6 @@ const allBlogArticles: CollectionEntry<'articles'>[] = (await getCollection('art
 const mostRecentArticle: CollectionEntry<'articles'> = allBlogArticles[0];
 
 const otherArticles: CollectionEntry<'articles'>[] = allBlogArticles.slice(1);
-console.log(mostRecentArticle);
 ---
 
 <BaseLayout>

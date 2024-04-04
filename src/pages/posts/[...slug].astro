@@ -1,0 +1,26 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+import { getEntry } from 'astro:content';
+const { slug } = Astro.params;
+
+if (slug === undefined) {
+  throw new Error('Slug is required');
+}
+
+const entry = await getEntry('articles', slug);
+
+if (entry === undefined) {
+  return Astro.redirect('/404');
+}
+
+const { Content } = await entry.render();
+---
+
+<ArticleLayout>
+  <section class="px-8">
+    <article class="prose prose-2xl prose-gray mx-auto dark:prose-invert prose-code:font-jetbrains">
+      <Content />
+    </article>
+  </section>
+</ArticleLayout>

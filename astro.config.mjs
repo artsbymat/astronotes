@@ -12,6 +12,6 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   image: {
-    domains: ['res.cloudinary.com']
+    domains: ['cloudinary.com']
   }
 });

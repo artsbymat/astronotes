@@ -15,6 +15,25 @@ if (entry === undefined) {
 }
 
 const { Content } = await entry.render();
+
+import { db, Comment, desc, eq, NOW } from 'astro:db';
+
+if (Astro.request.method === 'POST') {
+  const formData = await Astro.request.formData();
+  const author = formData.get('author');
+  const body = formData.get('body');
+  const slug = entry.slug;
+  const published = NOW;
+  if (typeof author === 'string' && typeof body === 'string') {
+    await db.insert(Comment).values({ slug, author, body, published });
+  }
+}
+
+const comments = await db
+  .select()
+  .from(Comment)
+  .orderBy(desc(Comment.published))
+  .where(eq(Comment.slug, entry.slug));
 ---
 
 <ArticleLayout>
@@ -23,4 +42,26 @@ const { Content } = await entry.render();
       <Content />
     </article>
   </section>
+
+  <form method="POST" style="display: grid">
+    <label for="body">Comment</label>
+    <textarea id="body" name="body"></textarea>
+
+    <label for="author">Author</label>
+    <input id="author" name="author" />
+
+    <button type="submit">Submit</button>
+  </form>
+
+  {
+    comments.map(({ author, body, published }) => {
+      return (
+        <article class="text-2xl">
+          <p>{published}</p>
+          <p>Author: {author}</p>
+          <p>{body}</p>
+        </article>
+      );
+    })
+  }
 </ArticleLayout>
